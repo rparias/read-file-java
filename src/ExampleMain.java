@@ -11,7 +11,7 @@ public class ExampleMain {
     public static void main(String[] args) {
 
         // read from file
-        List<String> listOfEachLineFromFile = readLinesFromFile("data.txt");
+        List<String> listOfEachLineFromFile = readLinesFromFile("data1.txt");
 
 
         // create a list of PersonWithDays
@@ -37,7 +37,7 @@ public class ExampleMain {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred. Check if the file exists");
             e.printStackTrace();
         }
 
