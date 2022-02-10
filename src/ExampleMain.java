@@ -2,6 +2,7 @@ import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,11 @@ public class ExampleMain {
 
         // print my list in the console
         printListOfPeopleWithDays(personWithDaysList);
+
+
+        // compare all items in the list
+        String result = compareListOfPeople(personWithDaysList);
+        System.out.println(result);
 
     }
 
@@ -89,5 +95,16 @@ public class ExampleMain {
         for (PersonWithDays personWithDays: personWithDaysList) {
             System.out.println(personWithDays.toString());
         }
+    }
+
+    public static String compareListOfPeople(List<PersonWithDays> personWithDaysList) {
+        Map<String, Integer> peopleMatchTimes = new HashMap<>();
+
+        for(int i = 0; i < personWithDaysList.size(); i++) {
+            for (int j = i + 1; j < personWithDaysList.size(); j++) {
+                peopleMatchTimes.put(personWithDaysList.get(i).getName() + "-" + personWithDaysList.get(j).getName(), 1);
+            }
+        }
+        return peopleMatchTimes.toString();
     }
 }
