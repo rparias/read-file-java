@@ -1,10 +1,10 @@
-import java.util.List;
+import java.util.Map;
 
 public class PersonWithDays {
     private String name;
-    private List<String> daysOfWorking;
+    private Map<String, TimeWorked> daysOfWorking;
 
-    public PersonWithDays(String name, List<String> daysOfWorking) {
+    public PersonWithDays(String name, Map<String, TimeWorked> daysOfWorking) {
         this.name = name;
         this.daysOfWorking = daysOfWorking;
     }
@@ -17,11 +17,11 @@ public class PersonWithDays {
         this.name = name;
     }
 
-    public List<String> getDaysOfWorking() {
+    public Map<String, TimeWorked> getDaysOfWorking() {
         return daysOfWorking;
     }
 
-    public void setDaysOfWorking(List<String> daysOfWorking) {
+    public void setDaysOfWorking(Map<String, TimeWorked> daysOfWorking) {
         this.daysOfWorking = daysOfWorking;
     }
 
