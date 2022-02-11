@@ -102,9 +102,23 @@ public class ExampleMain {
 
         for(int i = 0; i < personWithDaysList.size(); i++) {
             for (int j = i + 1; j < personWithDaysList.size(); j++) {
-                peopleMatchTimes.put(personWithDaysList.get(i).getName() + "-" + personWithDaysList.get(j).getName(), 1);
+                int daysWorkedTogether = compareTimesAndDays(personWithDaysList.get(i).getDaysOfWorking(), personWithDaysList.get(j).getDaysOfWorking());
+                peopleMatchTimes.put(personWithDaysList.get(i).getName() + "-" + personWithDaysList.get(j).getName(), daysWorkedTogether);
             }
         }
         return peopleMatchTimes.toString();
+    }
+
+    public static int compareTimesAndDays(Map<String, TimeWorked> daysOfWorking1, Map<String, TimeWorked> daysOfWorking2) {
+        int counter = 0;
+
+        for (Map.Entry<String,TimeWorked> entry : daysOfWorking1.entrySet()) {
+            String currentKey = entry.getKey();
+            if(daysOfWorking2.containsKey(currentKey)) {
+                counter += 1;
+            }
+        }
+
+        return counter;
     }
 }
