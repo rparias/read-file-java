@@ -1,12 +1,7 @@
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class ExampleMain {
     public static void main(String[] args) {
@@ -62,7 +57,7 @@ public class ExampleMain {
             System.out.println(name); // name
 
             String[] daysAsArray = splitNameAndDays[1].split(",");
-            System.out.println(daysAsArray); // days
+            System.out.println(Arrays.toString(daysAsArray)); // days
 
             Map<String, TimeWorked> daysOfWorking = convertArrayDaysToMap(daysAsArray);
 
@@ -115,10 +110,15 @@ public class ExampleMain {
         for (Map.Entry<String,TimeWorked> entry : daysOfWorking1.entrySet()) {
             String currentKey = entry.getKey();
             if(daysOfWorking2.containsKey(currentKey)) {
-                counter += 1;
+                boolean haveWorkedTogether = haveTheyWorkedInTheSameDay(daysOfWorking1.get(currentKey), daysOfWorking2.get(currentKey));
+                counter += haveWorkedTogether ? 1 : 0;
             }
         }
 
         return counter;
+    }
+
+    public static boolean haveTheyWorkedInTheSameDay(TimeWorked timeWorkedPerson1, TimeWorked timeWorkedPerson2) {
+        return timeWorkedPerson1.getStartTime().isBefore(timeWorkedPerson2.getEndTime()) && timeWorkedPerson1.getEndTime().isAfter(timeWorkedPerson2.getStartTime());
     }
 }
